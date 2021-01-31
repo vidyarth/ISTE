@@ -56,6 +56,7 @@
             <button type = 'button' href="#" id="names" onclick="gpa();">Get GPA</button>
             <h1></h1>
             <div id = 'output'/>
+            
             </div>
             <br/><br/>
         </form>
@@ -63,47 +64,69 @@
             function addFields() {
                 var input = '';
                 var number = document.getElementById('number').value;
-                for(var i=0;i<number;i++)
-                {
-                    input += "SUBJECT # "+(i+1) + ' ';
-                    input +="<input id='number"+i+"' name='number"+i+"' placeholder = 'Enter the marks'><br>";
-                    input += "<h2></h2>"
+                if (number>0){
+                    for(var i=0;i<number;i++)
+                    {
+                        input += "SUBJECT # "+(i+1) + ' ';
+                        input +="<input id='number"+i+"' name='number"+i+"' placeholder = 'Enter the marks'><br>";
+                        input += "<h2></h2>"
+                    }
+                    input += "<h1></h1>"
+                    document.getElementById('container').innerHTML = input;
                 }
-                input += "<h1></h1>"
-                document.getElementById('container').innerHTML = input;
+                else {
+                    input = "<h1>Enter a valid number</h1>"
+                    document.getElementById('container').innerHTML = input;
+                }
             }
             function gpa(){
                 var input = '';
                 var a = 0;
                 var a1 = 0;
                 var n = document.getElementById('number').value;
+                var c =0;
                 for (var i = 0; i<n; i++){
                     a = document.getElementById('number'+i).value;
+                    if (parseInt(a)<0 || parseInt(a)>100 ){
+                        c = 1;
+                    }
                     a1 += parseInt(a)
                 }
-                var m = a1/n;
-                input = "<h2>Your average score is '"+m+"'</h2><br>";
-                switch (~~(m/10)){
-                    case 10:
-                    case 9:
-                        input += "<h2>Your grade is S </h2><br>";
-                        break;
-                    case 8:
-                        input += "<h2>Your grade is A </h2><br>";
-                        break;
-                    case 6:
-                    case 7:
-                        input += "<h2>Your grade is B </h2><br>";
-                        break;
-                    case 5:
-                    case 4:
-                        input += "<h2>Your grade is C </h2><br>";
-                        break;
-                    default:
-                        input += "<h2>Sorry you have not passed the examination </h2><br>";
-                        break;
+                if (n>0 && c==0){
+                    var m = a1/n;
+                    input = "<h2>Your average score is '"+m+"'</h2><br>";
+                    switch (~~(m/10)){
+                        case 10:
+                        case 9:
+                            input += "<h2>Your grade is S </h2><br>";
+                            break;
+                        case 8:
+                            input += "<h2>Your grade is A </h2><br>";
+                            break;
+                        case 6:
+                        case 7:
+                            input += "<h2>Your grade is B </h2><br>";
+                            break;
+                        case 5:
+                        case 4:
+                            input += "<h2>Your grade is C </h2><br>";
+                            break;
+                        default:
+                            input += "<h2>Sorry you have not passed the examination </h2><br>";
+                            break;
+                    }
+                    document.getElementById('output').innerHTML = input;
                 }
-                document.getElementById('output').innerHTML = input;
+                else {
+                    if (n<0){
+                        input = ""
+                        document.getElementById('output').innerHTML = input;
+                    }
+                    else if (c==1){
+                        input = "<h1>Enter a valid mark</h1>"
+                        document.getElementById('output').innerHTML = input;
+                    }
+                }
             }
         </script>
     </body>
