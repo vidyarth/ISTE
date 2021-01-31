@@ -53,7 +53,7 @@
             <h1></h1>
             <div id='container'/>
             </div>
-            <button type = 'button' href="#" id="names" onclick="gpa();">get gpa</button>
+            <button type = 'button' href="#" id="names" onclick="gpa();">Get GPA</button>
             <h1></h1>
             <div id = 'output'/>
             </div>
@@ -65,7 +65,7 @@
                 var number = document.getElementById('number').value;
                 for(var i=0;i<number;i++)
                 {
-                    input += "SUBJECT:"+(i+1) + ' ';
+                    input += "SUBJECT # "+(i+1) + ' ';
                     input +="<input id='number"+i+"' name='number"+i+"' placeholder = 'Enter the marks'><br>";
                     input += "<h2></h2>"
                 }
@@ -98,6 +98,7 @@
                     case 5:
                     case 4:
                         input += "<h2>Your grade is C </h2><br>";
+                        break;
                     default:
                         input += "<h2>Sorry you have not passed the examination </h2><br>";
                         break;
